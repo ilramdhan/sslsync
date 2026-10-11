@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.2](https://github.com/ilramdhan/sslsync/compare/v0.1.1...v0.1.2) (2026-10-11)
+
+
+### Documentation
+
+* add CLAUDE.md with architecture, commands and contribution rules ([#9](https://github.com/ilramdhan/sslsync/issues/9)) ([c100ad2](https://github.com/ilramdhan/sslsync/commit/c100ad20dcd670c6bfd3149026c354900171657c))
+* add README banner with light and dark variants ([#11](https://github.com/ilramdhan/sslsync/issues/11)) ([ba4632e](https://github.com/ilramdhan/sslsync/commit/ba4632e52c28df734c88207521eb8684169674c7))
+* replace retired Go Report Card badge and document known advisories ([#6](https://github.com/ilramdhan/sslsync/issues/6)) ([a6b0f8c](https://github.com/ilramdhan/sslsync/commit/a6b0f8c704c4b162251791fd19fe5b329ae16f0d))
+
 ## [0.1.1](https://github.com/ilramdhan/sslsync/compare/v0.1.0...v0.1.1) (2026-10-11)
 
 

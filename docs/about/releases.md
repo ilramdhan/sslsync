@@ -50,7 +50,7 @@ It keeps one pull request open, *"chore(main): release x.y.z"*, with the new ver
 |---|---|
 | `sslsync_X.Y.Z_{darwin,linux,windows}_{amd64,arm64}.tar.gz/.zip` | the install script, manual download |
 | `sslsync_X.Y.Z_linux_{amd64,arm64}.{deb,rpm,apk}` | `dpkg -i`, `rpm -i`, `apk add` |
-| `checksums.txt` + `.sig` + `.pem` | integrity; signed keyless with cosign by this repository's workflow |
+| `checksums.txt` + `checksums.txt.sigstore.json` | integrity; signed keyless with cosign by this repository's workflow |
 | `*.sbom.json` | software bill of materials per archive |
 | build provenance attestations | `gh attestation verify <file> --repo ilramdhan/sslsync` |
 | `ghcr.io/ilramdhan/sslsync:X.Y.Z`, `:X.Y`, `:X`, `:latest` | Docker; multi-arch, signed, with SBOM and SLSA provenance |
@@ -62,7 +62,7 @@ Builds are reproducible: `-trimpath` plus the commit timestamp as the file time.
 
 ```bash
 # checksums signature, then the archive
-cosign verify-blob --certificate checksums.txt.pem --signature checksums.txt.sig \
+cosign verify-blob --bundle checksums.txt.sigstore.json \
   --certificate-identity-regexp 'https://github.com/ilramdhan/sslsync/' \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com checksums.txt
 sha256sum --ignore-missing -c checksums.txt

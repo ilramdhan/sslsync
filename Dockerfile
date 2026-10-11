@@ -11,7 +11,7 @@
 #
 # .env must be chmod 600 and owned by uid 65532, or pass `--user $(id -u)`.
 
-ARG GO_VERSION=1.26
+ARG GO_VERSION=1.26.9
 
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 WORKDIR /src

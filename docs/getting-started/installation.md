@@ -71,8 +71,7 @@ sslsync v1.2.0
 Every release's `checksums.txt` is signed with [cosign](https://docs.sigstore.dev), without keys, by GitHub Actions:
 
 ```bash
-cosign verify-blob \
-  --certificate checksums.txt.pem --signature checksums.txt.sig \
+cosign verify-blob --bundle checksums.txt.sigstore.json \
   --certificate-identity-regexp 'https://github.com/ilramdhan/sslsync/' \
   --certificate-oidc-issuer https://token.actions.githubusercontent.com \
   checksums.txt

@@ -45,10 +45,11 @@ sboms:
   - artifacts: archive
 
 signs:
+  # cosign v3: one Sigstore bundle (signature + certificate + transparency
+  # log entry) instead of separate .sig/.pem files
   - cmd: cosign
-    signature: "${artifact}.sig"
-    certificate: "${artifact}.pem"
-    args: [sign-blob, "--output-certificate=${certificate}", "--output-signature=${signature}", "${artifact}", "--yes"]
+    signature: "${artifact}.sigstore.json"
+    args: [sign-blob, "--bundle=${signature}", "${artifact}", "--yes"]
     artifacts: checksum
 
 nfpms:
@@ -99,7 +100,7 @@ release:
     go install github.com/ilramdhan/sslsync/cmd/sslsync@{{ .Tag }}
     ```
 
-    Verify: `cosign verify-blob --certificate checksums.txt.pem --signature checksums.txt.sig --certificate-identity-regexp 'https://github.com/ilramdhan/sslsync/' --certificate-oidc-issuer https://token.actions.githubusercontent.com checksums.txt`
+    Verify: `cosign verify-blob --bundle checksums.txt.sigstore.json --certificate-identity-regexp 'https://github.com/ilramdhan/sslsync/' --certificate-oidc-issuer https://token.actions.githubusercontent.com checksums.txt`
 
 changelog:
   disable: true # release-please writes CHANGELOG.md and the release notes

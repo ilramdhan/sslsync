@@ -1,0 +1,105 @@
+# GoReleaser builds everything a release ships:
+#   - binaries for macOS / Linux / Windows (amd64 + arm64), tar.gz / zip
+#   - checksums.txt, signed keyless with cosign; SBOMs for every archive
+#   - .deb / .rpm / .apk packages
+#   - Homebrew cask in github.com/ilramdhan/homebrew-tap
+# Run by .github/workflows/release.yml when release-please creates a tag.
+# Local dry run: goreleaser release --snapshot --clean
+version: 2
+
+project_name: sslsync
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - id: sslsync
+    main: ./cmd/sslsync
+    binary: sslsync
+    env: [CGO_ENABLED=0]
+    flags: [-trimpath]
+    ldflags:
+      - -s -w -X github.com/ilramdhan/sslsync/internal/app.Version={{ .Tag }}
+    goos: [darwin, linux, windows]
+    goarch: [amd64, arm64]
+    mod_timestamp: "{{ .CommitTimestamp }}" # reproducible builds
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+      - LICENSE
+      - .env.example
+
+checksum:
+  name_template: checksums.txt
+
+sboms:
+  - artifacts: archive
+
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    args: [sign-blob, "--output-certificate=${certificate}", "--output-signature=${signature}", "${artifact}", "--yes"]
+    artifacts: checksum
+
+nfpms:
+  - id: packages
+    package_name: sslsync
+    homepage: https://ilramdhan.github.io/sslsync
+    maintainer: Ilham Ramadhan <https://github.com/ilramdhan>
+    description: Renew SSL certificates on many servers over SSH — verified, with automatic rollback.
+    license: MIT
+    formats: [deb, rpm, apk]
+    bindir: /usr/bin
+
+
+homebrew_casks:
+  - name: sslsync
+    repository:
+      owner: ilramdhan
+      name: homebrew-tap
+      token: "{{ index .Env \"HOMEBREW_TAP_TOKEN\" }}"
+    directory: Casks
+    homepage: https://ilramdhan.github.io/sslsync
+    description: Renew SSL certificates on many servers over SSH — verified, with automatic rollback.
+    binaries: [sslsync]
+    hooks:
+      post:
+        # binaries are not notarized; remove the quarantine flag so macOS runs them
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/sslsync"]
+          end
+    # Skip when the tap token is not configured (forks, first release).
+    skip_upload: "{{ if index .Env \"HOMEBREW_TAP_TOKEN\" }}false{{ else }}true{{ end }}"
+
+release:
+  github:
+    owner: ilramdhan
+    name: sslsync
+  # release-please already created the release with the changelog; add assets
+  mode: keep-existing
+  footer: |
+    ## Install
+
+    ```bash
+    curl -fsSL https://ilramdhan.github.io/sslsync/install.sh | sh
+    # or
+    brew install --cask ilramdhan/tap/sslsync
+    # or
+    go install github.com/ilramdhan/sslsync/cmd/sslsync@{{ .Tag }}
+    ```
+
+    Verify: `cosign verify-blob --certificate checksums.txt.pem --signature checksums.txt.sig --certificate-identity-regexp 'https://github.com/ilramdhan/sslsync/' --certificate-oidc-issuer https://token.actions.githubusercontent.com checksums.txt`
+
+changelog:
+  disable: true # release-please writes CHANGELOG.md and the release notes

@@ -1,0 +1,14 @@
+# never send secrets or certificates to the build context
+.env
+.env.*
+!.env.example
+certs/
+logs/
+reports/
+bin/
+.git/
+.github/
+.idea/
+.vscode/
+*.md
+!README.md

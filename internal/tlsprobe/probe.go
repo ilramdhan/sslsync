@@ -1,6 +1,11 @@
 // Package tlsprobe connects to a TLS port and returns the certificate it
-// serves. It does not trust or validate the certificate — callers compare it
-// byte-for-byte with the expected one.
+// serves.
+//
+// It deliberately does not validate that certificate: its job is to read
+// whatever a port presents — including the expired or self-signed one being
+// replaced — so callers can compare it byte for byte with the certificate
+// they expect. Nothing is sent over these connections; they are closed right
+// after the handshake. Trust decisions are never based on this probe.
 package tlsprobe
 
 import (
@@ -24,8 +29,10 @@ func Fetch(addr string) (*x509.Certificate, error) {
 		return nil, err
 	}
 	conn, err := tls.DialWithDialer(&net.Dialer{Timeout: Timeout}, "tcp", addr, &tls.Config{
-		ServerName:         host,
-		InsecureSkipVerify: true, //nolint:gosec // the certificate is compared exactly by the caller
+		ServerName: host,
+		// Read-only probe, see the package comment: accept any certificate so
+		// an expired or untrusted one can be reported; callers compare bytes.
+		InsecureSkipVerify: true, //nolint:gosec // intentional, see package comment
 	})
 	if err != nil {
 		return nil, err

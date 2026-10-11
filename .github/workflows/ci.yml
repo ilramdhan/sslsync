@@ -73,10 +73,10 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with: { go-version-file: go.mod }
       - name: Known vulnerabilities (govulncheck)
-        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
+        run: go run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
       - name: No secrets committed (gitleaks)
         run: |
-          go install github.com/zricethezav/gitleaks/v8@latest
+          go install github.com/zricethezav/gitleaks/v8@v8.30.1
           "$(go env GOPATH)/bin/gitleaks" git --redact --verbose --exit-code 1 .
       - name: No certificate or key files committed
         run: |
@@ -136,6 +136,6 @@ jobs:
         with: { persist-credentials: false }
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with: { python-version: "3.12", cache: pip, cache-dependency-path: docs/requirements.txt }
-      - run: pip install -r docs/requirements.txt
+      - run: pip install --require-hashes -r docs/requirements.txt
       - name: Build (strict — broken links fail)
         run: mkdocs build --strict

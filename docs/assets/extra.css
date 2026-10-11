@@ -1,0 +1,21 @@
+.hero {
+  text-align: center;
+  padding: 1.5rem 0 1rem;
+}
+.hero h1 {
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.hero p {
+  max-width: 44rem;
+  margin: 0 auto 1rem;
+  font-size: 1.05rem;
+}
+.hero pre {
+  max-width: 44rem;
+  margin: 1rem auto;
+  text-align: left;
+}
+.hero .md-button {
+  margin: 0.25rem;
+}

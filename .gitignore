@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+
+# certificate material
+certs/*
+!certs/README.md
+
+# generated
+bin/
+logs/
+reports/
+
+# editors
+.idea/
+.vscode/
+.DS_Store

@@ -104,3 +104,18 @@ cosign verify ghcr.io/ilramdhan/sslsync:latest \
 
     Then add the badge it gives you to the README.
 9. **Settings → General → Social preview**: upload `docs/assets/social-preview.png`.
+
+## Launch images
+
+Images for announcing the first public release. Each PNG is rendered from the SVG next to it with `rsvg-convert`, using the same colors and wordmark as the banner.
+
+| File | Size | Use |
+| --- | --- | --- |
+| [`launch-4x3.png`](../assets/launch/launch-4x3.png) ([SVG](../assets/launch/launch-4x3.svg)) | 1600 × 1200 (4:3) | LinkedIn and X posts, Slack |
+| [`launch-portrait.png`](../assets/launch/launch-portrait.png) ([SVG](../assets/launch/launch-portrait.svg)) | 1080 × 1350 (4:5) | Instagram and LinkedIn feed |
+
+![sslsync launch image, 4:3](../assets/launch/launch-4x3.png)
+
+Suggested post text:
+
+> sslsync is now available. Every server. One command. New certificate, verified or rolled back. It checks SSH, sudo and service health before anything changes, compares every port with the new certificate afterwards, and restores everything if a step fails. Install it with `curl -fsSL https://ilramdhan.github.io/sslsync/install.sh | sh` and read the docs at <https://ilramdhan.github.io/sslsync/>.

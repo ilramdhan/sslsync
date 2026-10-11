@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="t d">
+<title id="t">sslsync is now available</title>
+<desc id="d">sslsync v0.1: every server, one command, new certificate verified or rolled back. Install with curl -fsSL ilramdhan.github.io/sslsync/install.sh | sh</desc>
+<rect width="1080" height="1350" fill="#F4F8F7"/>
+<rect width="1080" height="8" fill="#009485"/>
+<text x="72" y="128" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" font-weight="700" letter-spacing="3" fill="#00695C">NOW AVAILABLE · v0.1</text>
+<text x="72" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="88" font-weight="700" letter-spacing="-1.5" fill="#10201E">ssl<tspan fill="#009485">sync</tspan></text>
+<text x="72" y="302" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5" fill="#10201E">Every server. One command.</text>
+<text x="72" y="356" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5" fill="#00695C">New certificate,</text>
+<text x="72" y="411" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="-0.5" fill="#00695C">verified or rolled back.</text>
+<g transform="translate(72 465)">
+<rect width="936" height="330" rx="16" fill="#0F1F1D" stroke="#24403C"/>
+<circle cx="30" cy="30.0" r="7" fill="#2F4A46"/>
+<circle cx="52" cy="30.0" r="7" fill="#2F4A46"/>
+<circle cx="74" cy="30.0" r="7" fill="#2F4A46"/>
+<text x="468.0" y="36.0" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" fill="#9FB8B4" text-anchor="middle">$ sslsync deploy --group prod</text>
+<line x1="0" y1="60" x2="936" y2="60" stroke="#24403C"/>
+<g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" fill="#E6F2F0">
+<text x="40" y="114">web-prod</text><text x="210" y="114" fill="#9FB8B4">:443</text><text x="340" y="114"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="896" y="114" fill="#4FD1C0" text-anchor="end">✓</text>
+<text x="40" y="168">api-prod</text><text x="210" y="168" fill="#9FB8B4">:8443</text><text x="340" y="168"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="896" y="168" fill="#4FD1C0" text-anchor="end">✓</text>
+<text x="40" y="222">k8s-prod</text><text x="210" y="222" fill="#9FB8B4">:443</text><text x="340" y="222"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="896" y="222" fill="#4FD1C0" text-anchor="end">✓</text>
+<line x1="40" y1="253.0" x2="896" y2="253.0" stroke="#24403C" stroke-dasharray="4 6"/>
+<text x="40" y="300.3" font-size="20"><tspan fill="#4FD1C0">●</tspan> 3 servers updated, 0 rolled back</text></g></g>
+<rect x="72" y="850" width="48" height="48" rx="11" fill="#E0F0ED" stroke="#B5DCD6"/><circle cx="96.0" cy="874.0" r="13.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/><path d="M90.0 874.0 l4.0 4.0 l8.0 -9.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="142" y="873.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="700" fill="#10201E">Checked before</text>
+<text x="142" y="910.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">SSH, sudo, service health and file paths</text>
+<text x="142" y="935.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">are checked before anything changes.</text>
+<rect x="556" y="850" width="48" height="48" rx="11" fill="#E0F0ED" stroke="#B5DCD6"/><rect x="567.0" y="864.0" width="12.0" height="20.0" rx="2.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/><rect x="581.0" y="864.0" width="12.0" height="20.0" rx="2.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/><path d="M571.0 871.0 h4.0 M585.0 871.0 h4.0 M571.0 877.0 h4.0 M585.0 877.0 h4.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="626" y="873.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="700" fill="#10201E">Verified after</text>
+<text x="626" y="910.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">Every port is compared byte for byte</text>
+<text x="626" y="935.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">with the new certificate.</text>
+<rect x="72" y="1000" width="48" height="48" rx="11" fill="#E0F0ED" stroke="#B5DCD6"/><path d="M85.0 1020.0 A12.0 12.0 0 1 1 88.0 1033.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/><path d="M81.0 1013.0 l4.0 8.0 l8.0 -3.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="142" y="1023.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="700" fill="#10201E">Automatic rollback</text>
+<text x="142" y="1060.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">Files, Kubernetes secrets and key permissions</text>
+<text x="142" y="1085.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#4A5C59">are restored on any failure.</text>
+<rect x="556" y="1000" width="48" height="48" rx="11" fill="#E0F0ED" stroke="#B5DCD6"/><rect x="569.0" y="1010.0" width="22.0" height="28.0" rx="3.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/><path d="M574.0 1018.0 h12.0 M574.0 1024.0 h12.0 M574.0 1030.0 h8.0" fill="none" stroke="#00695C" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="626" y="1023.75" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="25" font-weight="700" fill="#10201E">One .env file</text>
+<text x="626" y="1060.75" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" fill="#4A5C59">nginx · apache · haproxy · minio</text>
+<text x="626" y="1085.75" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" fill="#4A5C59">postgres · kubernetes</text>
+<rect x="72" y="1160" width="936" height="68" rx="34.0" fill="#0F1F1D"/>
+<text x="106.0" y="1201.2" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" fill="#E6F2F0"><tspan fill="#4FD1C0">$</tspan><tspan dx="12">curl -fsSL ilramdhan.github.io/sslsync/install.sh | sh</tspan></text>
+<text x="72" y="1288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" fill="#4A5C59">github.com/ilramdhan/sslsync<tspan fill="#9AA9A6" dx="10">·</tspan><tspan dx="10">MIT</tspan><tspan fill="#9AA9A6" dx="10">·</tspan><tspan dx="10">open source</tspan></text>
+</svg>

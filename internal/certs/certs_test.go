@@ -21,12 +21,12 @@ type pair struct {
 	key  *ecdsa.PrivateKey
 }
 
-func newCA(t *testing.T) pair {
+func newCA(t testing.TB) pair {
 	return issue(t, pair{}, "Test CA", true, time.Now().Add(365*24*time.Hour))
 }
 
 // issue creates a certificate signed by parent (self-signed if parent is empty).
-func issue(t *testing.T, parent pair, cn string, ca bool, notAfter time.Time, dns ...string) pair {
+func issue(t testing.TB, parent pair, cn string, ca bool, notAfter time.Time, dns ...string) pair {
 	t.Helper()
 	key, err := ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
 	if err != nil {

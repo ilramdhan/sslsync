@@ -12,6 +12,10 @@
 #
 # Secrets: HOMEBREW_TAP_TOKEN (optional) — fine-grained PAT with contents:write
 # on <owner>/homebrew-tap. Without it the cask step is skipped.
+# RELEASE_PLEASE_TOKEN (optional) — fine-grained PAT on this repo only with
+# Contents: read & write and Pull requests: read & write. PRs opened with the
+# default GITHUB_TOKEN do not trigger `pull_request` workflows, so without it
+# release PRs get no CI/CodeQL run. Falls back to GITHUB_TOKEN when unset.
 name: Release
 
 on:
@@ -38,6 +42,7 @@ jobs:
       - id: rp
         uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
@@ -68,9 +73,24 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
-      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+      - id: attest
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
         with:
           subject-path: dist/*.tar.gz, dist/*.zip, dist/*.deb, dist/*.rpm, dist/*.apk
+      # The bundle is JSON Lines: one Sigstore bundle per line, each a signed
+      # DSSE envelope around an in-toto SLSA provenance statement. Attaching it
+      # as *.intoto.jsonl lets users verify offline
+      # (`gh attestation verify --bundle`) and is what OpenSSF Scorecard's
+      # Signed-Releases check looks for.
+      - name: Attach provenance to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release-please.outputs.tag }}
+          BUNDLE: ${{ steps.attest.outputs.bundle-path }}
+        run: |
+          out="sslsync_${TAG#v}.intoto.jsonl"
+          cp "$BUNDLE" "$out"
+          gh release upload "$TAG" "$out" --clobber --repo "$GITHUB_REPOSITORY"
 
   image:
     needs: release-please

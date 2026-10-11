@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/ilramdhan/sslsync/compare/v0.1.0...v0.1.1) (2026-10-11)
+
+
+### Bug Fixes
+
+* **release:** sign checksums with a cosign v3 bundle ([#3](https://github.com/ilramdhan/sslsync/issues/3)) ([b8fae03](https://github.com/ilramdhan/sslsync/commit/b8fae038a3475e9e8dd473f06502963a39bc67fb))
+
 ## 0.1.0 (2026-10-11)
 
 

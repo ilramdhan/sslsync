@@ -44,6 +44,10 @@ Before 1.0, breaking changes bump the minor version.
 
 It keeps one pull request open, *"chore(main): release x.y.z"*, with the new version and the `CHANGELOG.md` entries. **Merging that PR publishes the release.**
 
+### Reviewing bot PRs
+
+Release-please and Dependabot PRs are changes like any other. Before merging one, read the diff (version bump and changelog, or the dependency update and its release notes) and **approve it** (*Files changed → Review changes → Approve*). The approval is a real review, and approved changesets are what the OpenSSF Scorecard *Code-Review* check counts. Do not merge them with an admin bypass.
+
 ## What a release contains
 
 | Asset | For |
@@ -53,6 +57,7 @@ It keeps one pull request open, *"chore(main): release x.y.z"*, with the new ver
 | `checksums.txt` + `checksums.txt.sigstore.json` | integrity; signed keyless with cosign by this repository's workflow |
 | `*.sbom.json` | software bill of materials per archive |
 | build provenance attestations | `gh attestation verify <file> --repo ilramdhan/sslsync` |
+| `sslsync_X.Y.Z.intoto.jsonl` | the same SLSA provenance as a release asset, for offline checks: `gh attestation verify <file> --bundle sslsync_X.Y.Z.intoto.jsonl --repo ilramdhan/sslsync` |
 | `ghcr.io/ilramdhan/sslsync:X.Y.Z`, `:X.Y`, `:X`, `:latest` | Docker; multi-arch, signed, with SBOM and SLSA provenance |
 | Homebrew cask in `ilramdhan/homebrew-tap` | `brew install --cask ilramdhan/tap/sslsync` |
 
@@ -84,3 +89,17 @@ cosign verify ghcr.io/ilramdhan/sslsync:latest \
 4. **Settings → Rules → Rulesets** for `main`: require a pull request with 1 approval from code owners, require status checks (`Test (ubuntu-latest)`, `Test (macos-latest)`, `Lint`, `Security`, `Build …`, `Release config`, `Docker image`, `Docs build`, `conventional`, `analyze`), block force pushes, require linear history, and allow squash merge only.
 5. **Homebrew** (optional): create the public repo `ilramdhan/homebrew-tap`, then a fine-grained token with *Contents: read & write* on only that repo, saved as the Actions secret `HOMEBREW_TAP_TOKEN`. Without it, everything except the cask is still released.
 6. **Packages**: after the first release, set `ghcr.io/ilramdhan/sslsync` to *Public* (Package settings → Change visibility).
+7. **Release PR token** (recommended): pull requests opened with the default `GITHUB_TOKEN` do not trigger other workflows, so without this the release PR gets no CI or CodeQL run. Create a fine-grained personal access token (*Settings → Developer settings → Fine-grained tokens*) with *Repository access: Only select repositories → `ilramdhan/sslsync`* and *Repository permissions: Contents: Read and write, Pull requests: Read and write* (*Metadata: Read-only* is added automatically), nothing else. Save it as the Actions secret `RELEASE_PLEASE_TOKEN`. A GitHub App installation token with the same permissions works too. Without the secret, release-please falls back to `GITHUB_TOKEN` and still works. After adding it, close the open release PR; release-please recreates it with the new token, so its checks run.
+8. **OpenSSF Best Practices badge**: sign in at [bestpractices.dev](https://www.bestpractices.dev) with GitHub, choose *Add project*, and enter `https://github.com/ilramdhan/sslsync`. Most *passing* criteria are already met; point the form at:
+
+    - [x] **License**: MIT, `LICENSE` ([License](license.md))
+    - [x] **Contribution guide**: `CONTRIBUTING.md` ([Contributing](contributing.md))
+    - [x] **Vulnerability reporting**: `SECURITY.md` and private vulnerability reporting ([Security policy](security-policy.md))
+    - [x] **Version control**: public repository on GitHub, every change through a pull request
+    - [x] **Changelog**: `CHANGELOG.md`, written by release-please
+    - [x] **Automated tests**: CI runs `go test -race` on Linux and macOS for every PR
+    - [x] **Static analysis**: CodeQL (`security-extended`) and golangci-lint on every PR; govulncheck for dependencies
+    - [x] **Signed releases**: cosign-signed checksums and SLSA build provenance
+    - [x] **HTTPS**: the project site and downloads are served over HTTPS (GitHub Pages, GitHub Releases)
+
+    Then add the badge it gives you to the README.

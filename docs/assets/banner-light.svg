@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="t d">
+  <title id="t">sslsync</title>
+  <desc id="d">Renew SSL certificates on every server with one command: checked before, verified after, rolled back on failure.</desc>
+  <style>
+    .sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  </style>
+  <rect width="1280" height="400" fill="#F4F8F7"/>
+  <rect width="1280" height="6" fill="#009485"/>
+  <g class="sans">
+    <text x="80" y="132" font-size="64" font-weight="700" fill="#10201E" letter-spacing="-1">ssl<tspan fill="#009485">sync</tspan></text>
+    <text x="80" y="192" font-size="30" font-weight="600" fill="#10201E">Every server. One command.</text>
+    <text x="80" y="232" font-size="30" font-weight="600" fill="#00695C">New certificate, verified or rolled back.</text>
+    <text x="80" y="280" font-size="18" fill="#4A5C59">Renews SSL/TLS certificates over SSH from one laptop.</text>
+  </g>
+  <text x="80" y="330" class="mono" font-size="15" fill="#4A5C59">nginx · apache · haproxy · minio · postgres · kubernetes</text>
+  <g transform="translate(780 78)">
+    <rect width="420" height="244" rx="14" fill="#0F1F1D" stroke="#24403C"/>
+    <circle cx="26" cy="24" r="6" fill="#2F4A46"/><circle cx="46" cy="24" r="6" fill="#2F4A46"/><circle cx="66" cy="24" r="6" fill="#2F4A46"/>
+    <text x="210" y="29" class="mono" font-size="13" fill="#9FB8B4" text-anchor="middle">$ sslsync deploy --group prod</text>
+    <line x1="0" y1="48" x2="420" y2="48" stroke="#24403C"/>
+    <g class="mono" font-size="16" fill="#E6F2F0">
+      <text x="26" y="88">web-prod</text><text x="130" y="88" fill="#9FB8B4">:443</text><text x="200" y="88"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="394" y="88" fill="#4FD1C0" text-anchor="end">✓</text>
+      <text x="26" y="122">api-prod</text><text x="130" y="122" fill="#9FB8B4">:8443</text><text x="200" y="122"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="394" y="122" fill="#4FD1C0" text-anchor="end">✓</text>
+      <text x="26" y="156">k8s-prod</text><text x="130" y="156" fill="#9FB8B4">:443</text><text x="200" y="156"><tspan fill="#9FB8B4">OLD</tspan> → NEW</text><text x="394" y="156" fill="#4FD1C0" text-anchor="end">✓</text>
+      <text x="26" y="210" font-size="15"><tspan fill="#4FD1C0">●</tspan> 3 servers updated, 0 rolled back</text>
+    </g>
+  </g>
+</svg>

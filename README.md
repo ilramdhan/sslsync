@@ -1,5 +1,10 @@
 <div align="center">
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.svg">
+  <img alt="sslsync — renew SSL certificates on every server: checked before, verified after, rolled back on failure" src="docs/assets/banner-light.svg" width="100%">
+</picture>
+
 # sslsync
 
 **Renew SSL certificates on every server, safely.**

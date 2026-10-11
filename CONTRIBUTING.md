@@ -4,6 +4,7 @@ Thank you for improving sslsync. This tool changes production servers, so the ba
 
 ## Before you start
 
+- Using an AI assistant (Claude Code or similar)? Point it at [`CLAUDE.md`](https://github.com/ilramdhan/sslsync/blob/main/CLAUDE.md) first: it has the commands, architecture and rules in one place.
 - Open an issue first for anything bigger than a small fix, so the approach can be agreed before you write it.
 - Never commit `.env`, certificates, keys, `logs/` or `reports/`. They are git-ignored. Check `git status` before every commit anyway.
 - Never paste passwords, private keys or full `.env` files into issues or PRs. Replace real host names and IPs with `example.com` / `10.0.0.x`.

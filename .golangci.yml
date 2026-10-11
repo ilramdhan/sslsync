@@ -1,0 +1,34 @@
+version: "2"
+
+linters:
+  enable:
+    - bodyclose
+    - errorlint
+    - gocritic
+    - gosec
+    - misspell
+    - nilerr
+    - revive
+    - unconvert
+    - unparam
+  settings:
+    errcheck:
+      exclude-functions:
+        # output to the terminal / log files; a write error there must not
+        # abort a deploy half-way (see report.Printf)
+        - fmt.Fprint
+        - fmt.Fprintf
+        - fmt.Fprintln
+    gosec:
+      excludes:
+        - G204 # commands are built for the remote shell, values are shell-quoted (remote.Shq)
+        - G304 # reading files the operator configured is the point of the tool
+    revive:
+      rules:
+        - name: exported
+          disabled: true # internal packages; doc comments where they help
+
+formatters:
+  enable:
+    - gofmt
+    - goimports

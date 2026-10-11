@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.3](https://github.com/ilramdhan/sslsync/compare/v0.1.2...v0.1.3) (2026-10-11)
+
+
+### Documentation
+
+* add launch announcement images ([#13](https://github.com/ilramdhan/sslsync/issues/13)) ([df09cd3](https://github.com/ilramdhan/sslsync/commit/df09cd36f9b24e5d5b9614bc63421fef89917ff3))
+* add Open Graph and X card metadata with a share image ([#12](https://github.com/ilramdhan/sslsync/issues/12)) ([a44fdce](https://github.com/ilramdhan/sslsync/commit/a44fdce479f3e8b2f6a2a84b7f4e9b095307bbbc))
+
 ## [0.1.2](https://github.com/ilramdhan/sslsync/compare/v0.1.1...v0.1.2) (2026-10-11)
 
 

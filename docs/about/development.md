@@ -47,6 +47,10 @@ Dependencies only point downwards: `app → runner → {remote, tlsprobe, report
 - **Tests generate certificates**; never commit real ones. CI rejects `.pem/.key/.crt/.pfx/.env` files and scans every commit with gitleaks.
 - `.env.example` is embedded in the binary for `sslsync init`. `make build` / `make test` copy it to `internal/app/env.example`, and CI fails if they differ.
 
+## Fuzzing
+
+Code that reads untrusted input has Go fuzz tests: certificate/key loading (`certs.FuzzLoad`), `.env` parsing (`inventory.FuzzLoad`) and shell quoting (`remote.FuzzShq`). They check invariants, not just "no panic": rendered PEM is canonical, accepted configuration has valid ports, absolute paths and safe key modes, and `sh` reads back exactly the string `Shq` quoted. `make fuzz` runs each for 30 seconds (`make fuzz FUZZTIME=5m` for longer); CI runs them on every pull request. A crash is a bug: fix it and keep the input that `go test` writes to `testdata/fuzz/` as a regression seed.
+
 ## Testing against a real SSH server, safely
 
 Never test against production. A disposable container is enough for nginx, MinIO and file targets:

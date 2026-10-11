@@ -29,9 +29,10 @@ GO_SRC    := $(shell find cmd internal -name '*.go' -o -name '*.sh') go.mod go.s
 VERSION   ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS   := -s -w -X github.com/ilramdhan/sslsync/internal/app.Version=$(VERSION)
 IMAGE     ?= ghcr.io/ilramdhan/sslsync
+FUZZTIME  ?= 30s
 
 .DEFAULT_GOAL := help
-.PHONY: help setup build test lint validate list targets status plan check deploy \
+.PHONY: help setup build test fuzz lint validate list targets status plan check deploy \
         staging prod renew find k8s-ports trust-hosts logs last-log docker clean sync-template
 
 ##@ 1. Setup (once)
@@ -119,6 +120,11 @@ test: sync-template ## go vet + unit tests (race detector)
 
 sync-template: ## Copy .env.example into the binary (sslsync init uses it)
 	@cmp -s .env.example internal/app/env.example || cp .env.example internal/app/env.example
+
+fuzz: ## Run every fuzz target for FUZZTIME each (default 30s)
+	go test ./internal/certs -run '^$$' -fuzz '^FuzzLoad$$' -fuzztime $(FUZZTIME)
+	go test ./internal/inventory -run '^$$' -fuzz '^FuzzLoad$$' -fuzztime $(FUZZTIME)
+	go test ./internal/remote -run '^$$' -fuzz '^FuzzShq$$' -fuzztime $(FUZZTIME)
 
 lint: ## golangci-lint (config: .golangci.yml)
 	golangci-lint run ./...

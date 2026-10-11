@@ -1,0 +1,29 @@
+name: Feature request
+description: A new target type, setting or command, or a change in behavior.
+title: "[feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What do you need to do that sslsync cannot do today? Describe the server or service involved.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: For a new target type, include the files it needs, how to check its health, how to reload it, and how to undo the change.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Workarounds you use today
+      description: For example a `files` target with `_RELOAD`, or `_POST`.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: The change can be verified (a port that must serve the new certificate, or a command that proves it)
+        - label: The change can be rolled back

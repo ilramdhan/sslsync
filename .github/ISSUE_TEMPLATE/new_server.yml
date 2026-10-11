@@ -1,0 +1,54 @@
+name: Add / change a server
+description: Request that a server is added to, changed in, or removed from the inventory.
+title: "[server] "
+labels: [inventory]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **No passwords here.** Send them through the company password manager.
+        Attach the `make find` report if you have it (redact as needed).
+  - type: dropdown
+    id: action
+    attributes:
+      label: Action
+      options: [Add, Change, Remove]
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: Server name
+      description: UPPER_SNAKE_CASE, <APP>_<ENV>
+      placeholder: BILLING_PROD
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: Host and SSH port
+      placeholder: billing.example.com:22
+  - type: input
+    id: group
+    attributes:
+      label: Group
+      placeholder: prod
+  - type: checkboxes
+    id: targets
+    attributes:
+      label: What uses the certificate
+      options:
+        - label: nginx
+        - label: apache
+        - label: haproxy
+        - label: minio (own TLS)
+        - label: postgres
+        - label: kubernetes secrets
+        - label: files only
+        - label: other (describe below)
+  - type: textarea
+    id: details
+    attributes:
+      label: Paths and ports
+      description: Certificate/key paths per service, and every port clients connect to (for VERIFY).
+      render: text

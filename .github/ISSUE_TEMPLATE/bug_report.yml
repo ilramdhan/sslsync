@@ -1,0 +1,60 @@
+name: Bug report
+description: sslsync did something wrong, or failed in a way it should not.
+title: "[bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Do not paste passwords, private keys or your full `.env`.** Redact host names if needed.
+        Security problems: do not open an issue — contact the maintainers directly (see CONTRIBUTING.md).
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      placeholder: make deploy ONLY=web-prod
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include the relevant part of `logs/<run>/run.log` and the status from the summary.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: dropdown
+    id: state
+    attributes:
+      label: State of the server afterwards
+      options:
+        - Unchanged (check-failed)
+        - Rolled back
+        - ROLLBACK-FAILED — fixed manually
+        - ROLLBACK-FAILED — still broken
+        - Updated, but the result was wrong
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Server configuration (redacted)
+      description: The variables of the affected server, with passwords removed. Run `make list ONLY=<server>`.
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "`git describe --tags --always`"
+  - type: input
+    id: server-os
+    attributes:
+      label: Server OS / service versions
+      placeholder: Ubuntu 24.04, nginx 1.24, k3s v1.30

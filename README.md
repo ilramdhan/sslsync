@@ -6,7 +6,8 @@
 
 [![CI](https://github.com/ilramdhan/sslsync/actions/workflows/ci.yml/badge.svg)](https://github.com/ilramdhan/sslsync/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/ilramdhan/sslsync?sort=semver)](https://github.com/ilramdhan/sslsync/releases/latest)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ilramdhan/sslsync)](https://goreportcard.com/report/github.com/ilramdhan/sslsync)
+[![Go Reference](https://pkg.go.dev/badge/github.com/ilramdhan/sslsync.svg)](https://pkg.go.dev/github.com/ilramdhan/sslsync)
+[![CodeQL](https://github.com/ilramdhan/sslsync/actions/workflows/codeql.yml/badge.svg)](https://github.com/ilramdhan/sslsync/actions/workflows/codeql.yml)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/ilramdhan/sslsync/badge)](https://scorecard.dev/viewer/?uri=github.com/ilramdhan/sslsync)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 

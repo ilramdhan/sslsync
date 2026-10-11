@@ -1,0 +1,4 @@
+# Known advisories that do not affect sslsync. Reviewed 2026-10-11.
+[[IgnoredVulns]]
+id = "GO-2026-5932"
+reason = "golang.org/x/crypto/openpgp is unmaintained and has no fix; sslsync never imports it (govulncheck: not reachable)"

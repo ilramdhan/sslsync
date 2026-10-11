@@ -24,3 +24,9 @@ Found a problem? Report it privately: see the [security policy](security-policy.
 - `.gitignore` excludes `.env`, `certs/`, `logs/` and `reports/`. `.dockerignore` keeps them out of images.
 - CI fails if a `.pem`, `.key`, `.crt`, `.pfx` or `.env` file is committed, and scans every commit with gitleaks.
 - Releases are signed (cosign) and carry build provenance, so you can verify a binary came from this repository's workflow. See [Releases & CI/CD](releases.md#verifying-a-release).
+
+## Known advisories
+
+GO-2026-5932 is reported by scanners against `golang.org/x/crypto`, because its `openpgp` package is unmaintained and has no fix. sslsync does not import the `openpgp` package, so it is not affected. It is listed in `osv-scanner.toml` with that reason.
+
+`govulncheck` runs in CI on every pull request and fails on any reachable vulnerability.

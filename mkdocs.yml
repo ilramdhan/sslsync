@@ -9,6 +9,7 @@ copyright: Copyright &copy; 2026 Ilham Ramadhan
 
 theme:
   name: material
+  custom_dir: docs/overrides
   language: en
   icon:
     logo: material/certificate-outline

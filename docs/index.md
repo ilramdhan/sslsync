@@ -1,5 +1,5 @@
 ---
-title: sslsync
+title: "sslsync — Renew SSL certificates on every server, safely"
 hide:
   - navigation
   - toc

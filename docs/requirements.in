@@ -1,0 +1,3 @@
+# Input for docs/requirements.txt. Regenerate with:
+#   pip-compile --generate-hashes --allow-unsafe --strip-extras -o docs/requirements.txt docs/requirements.in
+mkdocs-material==9.7.*

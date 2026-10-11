@@ -103,3 +103,4 @@ cosign verify ghcr.io/ilramdhan/sslsync:latest \
     - [x] **HTTPS**: the project site and downloads are served over HTTPS (GitHub Pages, GitHub Releases)
 
     Then add the badge it gives you to the README.
+9. **Settings → General → Social preview**: upload `docs/assets/social-preview.png`.
